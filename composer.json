@@ -1,0 +1,21 @@
+{
+  "name": "codecloud/shopify-api-client",
+  "description": "Client to Shopify's RESTful API",
+  "license": "MIT",
+  "keywords": ["shopify", "api client"],
+  "authors": [
+    {
+      "name": "David Smith",
+      "email": "dave@code-cloud.co.uk"
+    }
+  ],
+  "require": {},
+  "require-dev": {
+    "phpunit/phpunit": "4.0.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Codecloud\\ShopifyApiClient\\": "src"
+    }
+  }
+}
