@@ -9,8 +9,10 @@
       "email": "dave@code-cloud.co.uk"
     }
   ],
-  "require": {},
+  "require": {
+  },
   "require-dev": {
+    "memio/memio": "^1.0",
     "phpunit/phpunit": "4.0.*"
   },
   "autoload": {
