@@ -1,0 +1,49 @@
+create:
+  type: post
+  url: admin/carrier_services
+  returns: carrier_service
+  allow:
+    active:
+      type: enum
+      options: ["true", "false"]
+    callback_url: string
+    carrier_service_type: string
+    name: string
+    service_discovery:
+      type: enum
+      options: ["true", "false"]
+
+update:
+  type: put
+  url: admin/carrier_services/{carrierServiceId}
+  returns: carrier_service
+  url_params:
+    carrierServiceId: int
+  allow:
+    active:
+      type: enum
+      options: ["true", "false"]
+    callback_url: string
+    carrier_service_type: string
+    name: string
+    service_discovery:
+      type: enum
+      options: ["true", "false"]
+
+search:
+  type: get
+  url: admin/carrier_services
+  returns: carrier_services
+
+get:
+  type: get
+  url: admin/carrier_services/{carrierServiceId}
+  url_params:
+    carrierServiceId: int
+  returns: carrier_service
+
+delete:
+  type: delete
+  url: admin/carrier_services/{carrierServiceId}
+  url_params:
+    carrierServiceId: int
