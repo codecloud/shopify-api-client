@@ -1,0 +1,115 @@
+fields:
+  type: get
+  url: admin/metafields
+  returns: metafields
+  allow:
+    "metafield[owner_id]": int
+    "metafield[owner_resource]": string
+
+storeFields:
+  type: get
+  url: admin/metafields
+  returns: metafields
+  allow:
+    limit: int
+    since_id: int
+    created_at_min: Datetime
+    created_at_max: datetime
+    updated_at_min: datetime
+    updated_at_max: datetime
+    namespace: string
+    key: string
+    value_type:
+      type: enum
+      options: ["string", "integer"]
+    fields: string
+
+count:
+  type: get
+  url: admin/metafields/count
+  returns: count
+
+productFields:
+  type: get
+  url: admin/products/{productId}/metafields
+  returns: metafields
+  url_params:
+    productId: int
+
+productCount:
+  type: get
+  url: admin/products/{productId}/metafields/count
+  returns: count
+  url_params:
+    productId: int
+
+get:
+  type: get
+  url: admin/metafields/{metafieldId}
+  returns: metafield
+  url_params:
+    metafieldId: int
+  allow:
+    fields: string
+
+getProduct:
+  type: get
+  url: admin/products/{productId}/metafields/{metafieldId}
+  returns: metafield
+  url_params:
+    productId: int
+    metafieldId: int
+
+create:
+  type: post
+  url: admin/metafields
+  returns: metafield
+  allow:
+    namespace: string
+    description: string
+    key:
+      type: string
+      required: true
+    value: string
+    value_type:
+      type: enum
+      options: ["string", "integer"]
+
+update:
+  type: put
+  url: admin/metafields/{metafieldId}
+  returns: metafield
+  allow:
+    namespace: string
+    description: string
+    key:
+      type: string
+      required: true
+    value: string
+    value_type:
+      type: enum
+      options: ["string", "integer"]
+
+updateProduct:
+  type: put
+  url: admin/products/{productId}/metafields/{metafieldId}
+  returns: metafield
+  allow:
+    description: string
+    value: string
+    value_type:
+      type: enum
+      options: ["string", "integer"]
+
+delete:
+  type: delete
+  url: admin/metafields/{metafieldId}
+  url_params:
+    metafieldId: int
+
+deleteProduct:
+  type: delete
+  url: admin/products/{productId}/metafields/{metafieldId}
+  url_params:
+    productId: int
+    metafieldId: int
