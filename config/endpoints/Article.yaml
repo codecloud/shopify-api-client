@@ -1,0 +1,118 @@
+search:
+  type: get
+  url: admin/blogs/{blogId}/articles
+  url_params:
+    blogId: int
+  allow:
+    limit: int
+    page: int
+    since_id: int
+    created_at_min: Datetime
+    created_at_max: Datetime
+    updated_at_min: Datetime
+    updated_at_max: Datetime
+    published_at_min: Datetime
+    published_at_max: Datetime
+    published_status:
+      type: enum
+      options: ["published", "unpublished", "any"]
+    fields: string
+
+count:
+  type: get
+  url: admin/blogs/{blogId}/articles/count
+  url_params:
+    blogId: int
+  allow:
+    created_at_min: Datetime
+    created_at_max: Datetime
+    updated_at_min: Datetime
+    updated_at_max: Datetime
+    published_at_min: Datetime
+    published_at_max: Datetime
+    published_status:
+      type: enum
+      options: ["published", "unpublished", "any"]
+
+get:
+  type: get
+  url: admin/blogs/{blogId}/articles/{articleId}
+  url_params:
+    blogId: int
+    articleId: int
+  allow:
+    dave: string
+    smith: int
+
+create:
+  type: post
+  url: admin/blogs/{blogId}/articles
+  url_params:
+     blogId: int
+     articleId: int
+  allow:
+    title:
+      type: string
+      required: true
+    author: string
+    tags: string
+    body: string
+    body_html: string
+    published_at: Datetime
+    image: object
+    metafields: array
+    published: bool
+    user_id: int
+    summary_html: string
+    template_suffix: string
+
+update:
+  type: put
+  url: admin/blogs/{blogId}/articles/{articleId}
+  url_params:
+    blogId: int
+    articleId: int
+  allow:
+    title: string
+    author: string
+    tags: string
+    body: string
+    body_html: string
+    published_at: Datetime
+    image: object
+    metafields: array
+    published: bool
+    user_id: int
+    summary_html: string
+    template_suffix: string
+
+authors:
+  type: get
+  url: admin/articles/authors
+
+tags:
+  type: get
+  url: admin/articles/tags
+  url_params:
+    blogId: int
+    articleId: int
+  allow:
+    popular: int
+    limit: int
+
+blogTags:
+  type: get
+  url: admin/blogs/{blogId}/articles/tags
+  url_params:
+    blogId: int
+    articleId: int
+  allow:
+    popular: int
+    limit: int
+
+remove:
+  type: delete
+  url: admin/blogs/{blogId}/articles/{articleId}
+  url_params:
+    blogId: int
+    articleId: int
