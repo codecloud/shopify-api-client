@@ -1,0 +1,60 @@
+create:
+  type: post
+  url: api/checkouts
+  returns: checkout
+  allow:
+    email: string
+    billing_address: object
+    currency: string
+    customer_id: int
+    discount: object
+    gift_cards: array
+    line_items: array
+    requires_shipping: bool
+    shipping_address: object
+    channel: string
+    reservation_time: int
+
+get:
+  type: get
+  url: api/checkouts/{checkoutToken}
+  returns: checkout
+  url_params:
+    checkoutToken: string
+
+update:
+  type: patch
+  url: api/checkouts/{checkoutToken}
+  returns: checkout
+  allow:
+    email: string
+    billing_address: object
+    currency: string
+    customer_id: int
+    discount: object
+    gift_cards: array
+    line_items: array
+    requires_shipping: bool
+    shipping_address: object
+    channel: string
+    reservation_time: int
+
+shippingRates:
+  type: get
+  url: api/checkouts/{checkoutToken}/shipping_rates
+  returns: shipping_rates
+
+selectShippingRate:
+  type: patch
+  url: api/checkouts/{checkoutToken}
+  allow:
+    shipping_rate: object
+
+payment:
+  type: post
+  url: api/checkouts/{checkoutToken}
+  returns: checkout
+  allow:
+    source:
+      type: object
+      required: true
