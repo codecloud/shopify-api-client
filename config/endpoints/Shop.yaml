@@ -1,0 +1,6 @@
+get:
+  type: get
+  url: admin/shop
+  returns: shop
+  allow:
+    fields: string
