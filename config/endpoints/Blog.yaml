@@ -1,0 +1,56 @@
+search:
+  type: get
+  url: admin/blogs
+  returns: blogs
+  allow:
+    since_id: int
+    handle: string
+    fields: string
+
+count:
+  type: get
+  url: admin/blogs/count
+  returns: count
+
+get:
+  type: get
+  url: admin/blogs/{blogId}
+  returns: blog
+  allow:
+    fields: string
+
+create:
+  type: post
+  url: admin/blogs
+  returns: blog
+  allow:
+    title:
+      type: string
+      required: true
+    body: string
+    metafields: array
+    namespace: string
+    commentable:
+      type: enum
+      options: ["yes", "no", "moderate"]
+    tags: string
+    template_suffix: string
+
+update:
+  type: put
+  url: admin/blogs/{blogId}
+  returns: blog
+  allow:
+    title: string
+    body: string
+    metafields: array
+    namespace: string
+    commentable:
+      type: enum
+      options: ["yes", "no", "moderate"]
+    tags: string
+    template_suffix: string
+
+delete:
+  type: delete
+  url: admin/blogs/{blogId}
