@@ -1,0 +1,42 @@
+search:
+  type: get
+  url: admin/themes
+  returns: themes
+  allow:
+    fields: string
+
+get:
+  type: get
+  url: admin/themes/{themeId}
+  returns: theme
+  url_params:
+    themeId: int
+  allow:
+    fields: string
+
+create:
+  type: post
+  url: admin/themes
+  allow:
+    name:
+      type: string
+      required: true
+    src: string
+    role:
+      type: enum
+      options: ["main", "mobile", "unpublished"]
+    previewable: bool
+
+
+update:
+  type: put
+  url: admin/themes/{themeId}
+  returns: theme
+  url_params:
+    themeId: int
+  allow:
+    name: string
+    role:
+      type: enum
+      options: ["main", "mobile", "unpublished"]
+    previewable: bool
