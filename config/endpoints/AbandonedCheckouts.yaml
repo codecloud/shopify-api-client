@@ -1,0 +1,28 @@
+count:
+  type: get
+  url: admin/checkouts/count
+  allow:
+    since_id: int
+    created_at_min: DateTime
+    created_at_max: DateTime
+    updated_at_min: DateTime
+    updated_at_max: DateTime
+    status:
+      required: true
+      type: enum
+      options: ['open', 'closed']
+
+search:
+  type: get
+  url: admin/checkouts
+  allow:
+    limit: int
+    page: int
+    since_id: int
+    created_at_min: DateTime
+    created_at_max: DateTime
+    updated_at_min: DateTime
+    updated_at_max: DateTime
+    status:
+      type: enum
+      options: ['open', 'closed']

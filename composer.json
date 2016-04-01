@@ -10,6 +10,7 @@
     }
   ],
   "require": {
+    "symfony/console": "^3.0"
   },
   "require-dev": {
     "memio/memio": "^1.0",

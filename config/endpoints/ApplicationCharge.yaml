@@ -1,0 +1,40 @@
+create:
+  type: post
+  url: admin/application_charges
+  allow:
+    name:
+        type: string
+        required: true
+    price:
+        type: currency
+        required: true
+    return_url: string
+    test: bool
+  returns: application_charge
+
+get:
+  type: get
+  url: admin/application_charges/{applicationChargeId}
+  url_params:
+    applicationChargeId:
+      type: int
+  allow:
+    fields: string
+  returns: application_charge
+
+search:
+  type: get
+  url: admin/application_charges
+  allow:
+    since_id: int
+    fields: string
+
+activate:
+  type: post
+  url: admin/application_charges/{applicationChargeId}/activate
+  url_params:
+      applicationChargeId:
+        type: int
+        required: true
+  returns: application_charge
+

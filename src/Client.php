@@ -1,11 +1,25 @@
 <?php
 namespace Codecloud\ShopifyApiClient;
 
+use Codecloud\ShopifyApiClient\EndpointFramework\EndpointProxy;
+
 class Client
 {
-    public function __construct()
+    /**
+     * @return Endpoint\AbandonedCheckouts
+     */
+    public function abandonedCheckouts()
     {
-        echo 'dave' . __NAMESPACE__ . PHP_EOL;
-        exit;
+        return $this->createEndpointProxy('AbandonedCheckouts');
+    }
+
+    /**
+     * @param string $endpointName
+     * @return EndpointProxy
+     */
+    private function createEndpointProxy($endpointName)
+    {
+        return EndpointProxy::create($endpointName, $this);
     }
 }
+
