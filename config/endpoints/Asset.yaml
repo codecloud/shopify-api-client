@@ -1,10 +1,14 @@
 search:
   type: get
   url: admin/themes/{themeId}/assets
+  url_params:
+    themeId: int
 
 get:
   type: get
   url: admin/themes/{themeId}/assets
+  url_params:
+    themeId: int
   allow:
     fields: string
     "asset[key]": string
@@ -13,6 +17,8 @@ get:
 put:
   type: put
   url: admin/themes/{themeId}/assets
+  url_params:
+    themeId: int
   allow:
     asset:
       type: object
@@ -21,6 +27,8 @@ put:
 delete:
   type: delete
   url: admin/themes/{themeId}/assets
+  url_params:
+    themeId: int
   allow:
     "asset[key]":
       type: string
