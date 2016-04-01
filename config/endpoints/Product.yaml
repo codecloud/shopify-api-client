@@ -1,0 +1,105 @@
+search:
+  type: get
+  url: admin/products
+  returns: products
+  allow:
+    ids: string
+    limit: int
+    page: int
+    since_id: int
+    title: string
+    vendor: string
+    handle: string
+    product_type: string
+    collection_id: int
+    created_at_min: Datetime
+    created_at_max: Datetime
+    updated_at_min: Datetime
+    updated_at_max: Datetime
+    published_at_min: Datetime
+    published_at_max: Datetime
+    published_status:
+      type: enum
+      options: ["published", "unpublished", "any"]
+    fields: string
+
+count:
+  type: get
+  url: admin/products/count
+  returns: count
+  allow:
+    vendor: string
+    product_type: string
+    collection_id: int
+    created_at_min: Datetime
+    created_at_max: Datetime
+    updated_at_min: Datetime
+    updated_at_max: Datetime
+    published_at_min: Datetime
+    published_at_max: Datetime
+    published_status:
+      type: enum
+      options: ["published", "unpublished", "any"]
+
+get:
+  type: get
+  url: admin/products/{productId}
+  returns: product
+  url_params:
+    productId: int
+  allow:
+    fields: string
+
+create:
+  type: post
+  url: admin/products
+  returns: product
+  allow:
+    body_html: string
+    handle: string
+    images: array
+    options: array
+    product_type: string
+    published: bool
+    published_scope: string
+    tags: string
+    template_suffix: string
+    title:
+      type: string
+      required: true
+    metafields_global_title_tag: string
+    metafields_global_description_tag: string
+    variants: array
+    vendor: string
+    metafields: array
+
+update:
+  type: put
+  url: admin/products/{productId}
+  returns: product
+  url_params:
+    productId: int
+  allow:
+    body_html: string
+    handle: string
+    images: array
+    options: array
+    product_type: string
+    published: bool
+    published_scope: string
+    tags: string
+    template_suffix: string
+    title:
+      type: string
+      required: true
+    metafields_global_title_tag: string
+    metafields_global_description_tag: string
+    variants: array
+    vendor: string
+    metafields: array
+
+delete:
+  type: delete
+  url: admin/products/{productId}
+  url_params:
+    productId: int
