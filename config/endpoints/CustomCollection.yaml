@@ -1,0 +1,91 @@
+search:
+  type: get
+  url: admin/custom_collections
+  returns: custom_collections
+  allow:
+    limit: int
+    page: int
+    since_id: int
+    title: string
+    product_id: int
+    handle: string
+    updated_at_min: Datetime
+    updated_at_max: Datetime
+    published_at_min: Datetime
+    published_at_max: Datetime
+    published_status:
+      type: enum
+      options: ["published", "unpublished", "any"]
+    fields: string
+
+count:
+  type: get
+  url: admin/custom_collections/count
+  returns: count
+  allow:
+    title: string
+    product_id: int
+    updated_at_min: Datetime
+    updated_at_max: Datetime
+    published_at_min: Datetime
+    published_at_max: Datetime
+    published_status:
+      type: enum
+      options: ["published", "unpublished", "any"]
+
+get:
+  type: get
+  url: admin/custom_collections/{customCollectionId}
+  returns: custom_collection
+  url_params:
+    customCollectionId: int
+  allow:
+    fields: string
+
+create:
+  type: post
+  url: admin/custom_collections
+  returns: custom_collection
+  allow:
+    title:
+      type: string
+      required: true
+    image: object
+    published: bool
+    collects: array
+    metafields: array
+    body_html: string
+    handle: string
+    published_scope: string
+    sort_order:
+      type: enum
+      options: ["alpha-asc", "alpha-desc", "best-selling", "created", "created-desc", "manual", "price-asc", "price-desc"]
+    template_suffix: string
+
+update:
+  type: put
+  url: admin/custom_collections/{customCollectionId}
+  returns: custom_collection
+  url_params:
+    customCollectionId: int
+  allow:
+    title:
+      type: string
+      required: true
+    image: object
+    published: bool
+    collects: array
+    metafields: array
+    body_html: string
+    handle: string
+    published_scope: string
+    sort_order:
+      type: enum
+      options: ["alpha-asc", "alpha-desc", "best-selling", "created", "created-desc", "manual", "price-asc", "price-desc"]
+    template_suffix: string
+
+delete:
+  type: delete
+  url: admin/custom_collections/{customCollectionId}
+  url_params:
+    customCollectionId: int

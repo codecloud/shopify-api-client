@@ -1,0 +1,47 @@
+create:
+  type: post
+  url: admin/collects
+  returns: collect
+  allow:
+    product_id:
+      type: int
+      required: true
+    collection_id:
+      type: int
+      required: true
+    featured: bool
+    position: int
+    sort_value: string
+
+delete:
+  type: delete
+  url: admin/collects/{collectId}
+  urls_params:
+    collectId: int
+
+search:
+  type: get
+  url: admin/collects
+  returns: collects
+  allow:
+    page: int
+    limit: int
+    fields: string
+
+count:
+  type: get
+  url: admin/collections/count
+  returns: count
+  allow:
+    product_id: int
+    collection_id: int
+
+get:
+  type: get
+  url: admin/collects/{collectId}
+  returns: collect
+  url_params:
+    collectId: int
+  allow:
+    fields: string
+

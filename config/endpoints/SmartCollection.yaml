@@ -1,0 +1,100 @@
+search:
+  type: get
+  url: admin/smart_collections
+  returns: smart_collections
+  allow:
+    limit: int
+    page: int
+    since_id: int
+    title: string
+    product_id: int
+    handle: string
+    updated_at_min: Datetime
+    updated_at_max: Datetime
+    published_at_min: Datetime
+    published_at_max: Datetime
+    published_status:
+      type: enum
+      options: ["published", "unpublished", "any"]
+    fields: string
+
+count:
+  type: get
+  url: admin/smart_collections/count
+  returns: count
+  allow:
+    title: string
+    product_id: int
+    updated_at_min: Datetime
+    updated_at_max: Datetime
+    published_at_min: Datetime
+    published_at_max: Datetime
+    published_status:
+      type: enum
+      options: ["published", "unpublished", "any"]
+
+get:
+  type: get
+  url: admin/smart_collections/{smartCollectionId}
+  returns: smart_collection
+  url_params:
+    smartCollectionId: int
+  allow:
+    fields: string
+
+create:
+  type: post
+  url: admin/smart_collections
+  returns: smart_collection
+  allow:
+    title:
+      type: string
+      required: true
+    body_html: string
+    handle: string
+    image: object
+    published_scope: string
+    rules: array
+    disjunctive: bool
+    sort_order:
+      type: enum
+      options: ["alpha-asc", "alpha-desc", "best-selling", "created", "created-desc", "manual", "price-asc", "price-desc"]
+    template_suffix: string
+
+update:
+  type: put
+  url: admin/smart_collections/{smartCollectionId}
+  returns: smart_collection
+  url_params:
+    smartCollectionId: int
+  allow:
+    title:
+      type: string
+      required: true
+    body_html: string
+    handle: string
+    image: object
+    published_scope: string
+    rules: array
+    disjunctive: bool
+    sort_order:
+      type: enum
+      options: ["alpha-asc", "alpha-desc", "best-selling", "created", "created-desc", "manual", "price-asc", "price-desc"]
+    template_suffix: string
+
+order:
+  type: put
+  url: admin/smart_collections/{smartCollectionId}/order
+  url_params:
+    smartCollectionId: int
+  allow:
+    products: array
+    sort_order:
+      type: enum
+      options: ["alpha-asc", "alpha-desc", "best-selling", "created", "created-desc", "manual", "price-asc", "price-desc"]
+
+delete:
+  type: delete
+  url: admin/smart_collections/{smartCollectionId}
+  url_params:
+    smartCollectionId: int
