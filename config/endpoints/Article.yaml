@@ -40,9 +40,6 @@ get:
   url_params:
     blogId: int
     articleId: int
-  allow:
-    dave: string
-    smith: int
 
 create:
   type: post
