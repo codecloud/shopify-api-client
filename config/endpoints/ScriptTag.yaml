@@ -1,0 +1,68 @@
+search:
+  type: get
+  url: admin/script_tags
+  returns: script_tags
+  allow:
+    limit: int
+    page: int
+    since_id: int
+    created_at_min: datetime
+    created_at_max: datetime
+    updated_at_min: datetime
+    updated_at_max: datetime
+    src: string
+    fields: string
+
+count:
+  type: get
+  url: admin/script_tags/count
+  returns: count
+  allow:
+    src: string
+
+get:
+  type: get
+  url: admin/script_tags/{scriptTagId}
+  returns: script_tag
+  url_params:
+    scriptTagId: int
+  allow:
+    fields: string
+
+create:
+  type: post
+  url: admin/script_tags
+  returns: script_tag
+  allow:
+    event:
+      type: string
+      required: true
+    src:
+      type: string
+      required: true
+    display_scope:
+      type: enum
+      options: ["online_store", "order_status", "all"]
+
+update:
+  type: put
+  url: admin/script_tags/{scriptTagId}
+  returns: script_tag
+  url_params:
+    scriptTagId: int
+  allow:
+    event:
+      type: string
+      required: true
+    src:
+      type: string
+      required: true
+    display_scope:
+      type: enum
+      options: ["online_store", "order_status", "all"]
+
+delete:
+  type: delete
+  url: admin/script_tags/{scriptTagId}
+  url_params:
+    scriptTagId: int

@@ -1,0 +1,54 @@
+product:
+  type: get
+  url: admin/products/{productId}/events
+  returns: events
+  url_params:
+    productId: int
+  allow:
+    limit: int
+    page: int
+    since_id: int
+    created_at_min: datetime
+    created_at_max: datetime
+    filter: string
+    verb: string
+    fields: string
+
+order:
+  type: get
+  url: admin/order/{orderId}/events
+  returns: events
+  url_params:
+    orderId: int
+  allow:
+    limit: int
+    page: int
+    since_id: int
+    created_at_min: datetime
+    created_at_max: datetime
+    filter: string
+    verb: string
+    fields: string
+
+
+search:
+  type: get
+  url: admin/events
+  returns: events
+  allow:
+    limit: int
+    page: int
+    since_id: int
+    created_at_min: datetime
+    created_at_max: datetime
+    filter: string
+    verb: string
+    fields: string
+
+count:
+  type: get
+  url: admin/events/count
+  returns: count
+  allow:
+    created_at_min: datetime
+    created_at_max: datetime

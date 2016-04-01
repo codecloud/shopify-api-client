@@ -1,0 +1,71 @@
+search:
+  type: get
+  url: admin/webhooks
+  returns: webhooks
+  allow:
+    address: string
+    created_at_min: datetime
+    created_at_max: datetime
+    updated_at_min: datetime
+    updated_at_max: datetime
+    fields: string
+    limit: int
+    page: int
+    since_id: int
+    topic: string
+
+
+count:
+  type: get
+  url: admin/webhooks/count
+  returns: count
+  allow:
+    address: string
+    topic: string
+
+get:
+  type: get
+  url: admin/webhooks/{webhookId}
+  returns: webhook
+  url_params:
+    webhookId: int
+  allow:
+    fields: string
+
+create:
+  type: post
+  url: admin/webhooks
+  returns: webhook
+  allow:
+    topic:
+      type: string
+      required: true
+    address:
+      type: string
+      required: true
+    format:
+      type: enum
+      options: ["json", "xml"]
+    fields: array
+    metafield_namespaces: array
+
+update:
+  type: put
+  url: admin/webhooks/{webhookId}
+  returns: webhook
+  url_params:
+    webhookId: int
+  allow:
+    topic: string
+    address: string
+    format:
+      type: enum
+      options: ["json", "xml"]
+    fields: array
+    metafield_namespaces: array
+
+delete:
+  type: delete
+  url: admin/webhooks/{webhookId}
+  url_params:
+    webhookId: int
