@@ -1,0 +1,27 @@
+search:
+  type: get
+  url: admin/themes/{themeId}/assets
+
+get:
+  type: get
+  url: admin/themes/{themeId}/assets
+  allow:
+    fields: string
+    "asset[key]": string
+    theme_id: int
+
+put:
+  type: put
+  url: admin/themes/{themeId}/assets
+  allow:
+    asset:
+      type: object
+      required: true
+
+delete:
+  type: delete
+  url: admin/themes/{themeId}/assets
+  allow:
+    "asset[key]":
+      type: string
+      required: true
