@@ -80,6 +80,15 @@ class Method
     }
 
     /**
+     * @param string $paramName
+     * @param array|string $paramConfig
+     */
+    public function addUrlParam($paramName, $paramConfig)
+    {
+        $this->urlParams[$paramName] = $paramConfig;
+    }
+
+    /**
      * @return array
      */
     public function getRequiredParams()
@@ -106,7 +115,7 @@ class Method
     public function getOptionalParamConfig($paramName)
     {
         if (! array_key_exists($paramName, $this->allowedParams)) {
-            throw new \Exception($paramName . ' does not exist');
+            throw new \Exception('Param "' . $paramName . '" is not an allowable parameter on method "' . $this->getName() . '"');
         }
 
         return $this->allowedParams[$paramName];
