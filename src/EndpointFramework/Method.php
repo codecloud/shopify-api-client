@@ -43,6 +43,14 @@ class Method
     }
 
     /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
      * @param array $allowedParams
      */
     public function setAllowedParams(array $allowedParams)
@@ -56,19 +64,6 @@ class Method
     public function setReturnsSingleProperty($propertyName)
     {
         $this->returnsSingleProperty = $propertyName;
-    }
-
-    /**
-     * @param \stdClass $response
-     * @return mixed
-     */
-    public function getReturnValueFromResponse(\stdClass $response)
-    {
-        if ($this->returnsSingleProperty && property_exists($response, $this->returnsSingleProperty)) {
-            return $response->{$this->returnsSingleProperty};
-        }
-
-        return $response;
     }
 
     /**
@@ -127,7 +122,7 @@ class Method
      */
     public function constructUrlWithParams(array $params)
     {
-        $url = $this->url;
+        $url = $this->getUrl();
 
         foreach ($params as $paramName => $value) {
             $url = str_replace('{' . $paramName . '}', $value, $url);

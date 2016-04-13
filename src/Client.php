@@ -6,6 +6,110 @@ use Codecloud\ShopifyApiClient\EndpointFramework\EndpointProxy;
 class Client
 {
     /**
+     * @var \GuzzleHttp\Client
+     */
+    private $httpClient;
+
+    /**
+     * @var array
+     */
+    private $requestDefaults = [
+        'headers' => [
+            'Content-Type' => 'application/json'
+        ]
+    ];
+
+    /**
+     * @param \GuzzleHttp\Client $httpClient
+     */
+    public function __construct(\GuzzleHttp\Client $httpClient)
+    {
+        $this->httpClient = $httpClient;
+    }
+
+    /**
+     * @param string $authToken
+     */
+    public function setAuthKey($authToken)
+    {
+        $this->requestDefaults = array_merge_recursive($this->requestDefaults, [
+            'headers' => [
+                'X-Shopify-Auth-Token' => $authToken
+            ]
+        ]);
+    }
+
+    /**
+     * @param string $url
+     * @param array $params
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function get($url, array $params = [])
+    {
+        return $this->httpRequest('get', $url, $params);
+    }
+
+    /**
+     * @param string $url
+     * @param array $params
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function put($url, array $params = [])
+    {
+        return $this->httpRequest('put', $url, $params);
+    }
+
+    /**
+     * @param string $url
+     * @param array $params
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function post($url, array $params = [])
+    {
+        return $this->httpRequest('post', $url, $params);
+    }
+
+    /**
+     * @param string $url
+     * @param array $params
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function delete($url, array $params = [])
+    {
+        return $this->httpRequest('delete', $url, $params);
+    }
+
+    /**
+     * @param string $url
+     * @param array $params
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    public function patch($url, array $params = [])
+    {
+        return $this->httpRequest('patch', $url, $params);
+    }
+
+    /**
+     * @param string  $httpVerb
+     * @param string $url
+     * @param array $params
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     */
+    protected function httpRequest($httpVerb, $url, array $params = [])
+    {
+        return $this->httpClient->request($httpVerb, $url, $this->mergeOptions(['body' => $params]));
+    }
+
+    /**
+     * @param array $options
+     * @return array
+     */
+    private function mergeOptions(array $options = [])
+    {
+        return array_merge_recursive($this->requestDefaults, $options);
+    }
+
+    /**
      * @return Endpoint\AbandonedCheckouts
      */
     public function abandonedCheckouts()

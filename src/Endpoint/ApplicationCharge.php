@@ -1,38 +1,33 @@
 <?php
+
 namespace Codecloud\ShopifyApiClient\Endpoint;
 
 class ApplicationCharge extends Endpoint
 {
-    /**
-     * @param array $params
-     */
-    public function create(array $params)
+    public function create($name, $price, array $params)
     {
-        return $this->call(self::POST, 'application_charges', [
-            'name'       => 'required|string',
-            'price'      => 'required|currency',
-            'return_url' => 'string',
-            'test'       => 'bool'
-        ]);
+        $params = array_merge($params, compact($name, $price));
+        $response = $this->api->post($this->getMethod('create')->getUrl(), $params);
+        return $response->get('application_charge');
     }
 
-    public function get($applicationChargeId)
+    public function get($applicationChargeId, array $params)
     {
-        return $this->callSingle(self::GET, 'application_charges/' . $id, 'application_charge', [
-            'fields' => 'string'
-        ]);
+        $url = $this->getMethod('get')->constructUrlWithParams(compact($applicationChargeId));
+        $response = $this->api->get($url, $params);
+        return $response->get('application_charge');
     }
 
-    public function search()
+    public function search(array $params)
     {
-        return $this->call(self::GET, 'application_charges', [
-            'since_id' => 'int',
-            'fields'   => 'string'
-        ]);
+        $response = $this->api->get($this->getMethod('search')->getUrl(), $params);
+        return $response;
     }
 
     public function activate($applicationChargeId)
     {
-        return $this->callSingle(self::POST, 'application_charges/' . $id . '/activate', 'application_charge');
+        $url = $this->getMethod('activate')->constructUrlWithParams(compact($applicationChargeId));
+        $response = $this->api->post($url);
+        return $response->get('application_charge');
     }
 }
