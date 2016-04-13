@@ -7,9 +7,7 @@ use CodeCloud\ShopifyApiClient\Auth\RequestAuthenticator;
 use CodeCloud\ShopifyApiClient\Event\ShopifyStoreWasConfirmed;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Event;
 use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;
 use Symfony\Component\Routing\Exception\InvalidParameterException;
 
@@ -28,9 +26,7 @@ class OAuthController extends Controller
 
         $url = "https://$shop.myshopify.com/admin/oauth/authorize?client_id=$clientId&scope=$scopes&redirect_uri=$redirectUri&state=$state";
 
-        Response::create('', 302, [
-            'Location' => $url
-        ])->send();
+        return \response()->redirectTo($url);
     }
 
     public function getConfirmInstallation(Request $request)
@@ -65,10 +61,8 @@ class OAuthController extends Controller
         $decoded = $response->getBody()->getContents();
 
         //do something here
-        Event::fire(new ShopifyStoreWasConfirmed($decoded));
+        \Event::fire(new ShopifyStoreWasConfirmed($decoded));
 
-        Response::create('', 302, [
-            'Location' => \Config::get('shopify-api-client.urls.post_install_redirect_uri')
-        ])->send();
+        return \response()->redirectTo(\Config::get('shopify-api-client.urls.post_install_redirect_uri'));
     }
 }
