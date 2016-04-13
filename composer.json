@@ -21,7 +21,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Codecloud\\ShopifyApiClient\\": "src"
+      "CodeCloud\\ShopifyApiClient\\": "src"
     }
   }
 }
