@@ -25,7 +25,7 @@ class ShopifyApiClientServiceProvider extends ServiceProvider
 
         $controller = __NAMESPACE__ . '\\Controller\\OAuthController';
 
-        \Route::get($urls['begin'], "$controller@getInstallApp");
+        \Route::get($urls['install'], "$controller@getInstallApp");
         \Route::get($urls['confirm_installation'], "$controller@getConfirmInstallation");
     }
 
