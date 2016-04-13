@@ -1,8 +1,8 @@
 <?php
-namespace Codecloud\ShopifyApiClient\EndpointFramework;
+namespace CodeCloud\ShopifyApiClient\EndpointFramework;
 
-use Codecloud\ShopifyApiClient\Client;
-use Codecloud\ShopifyApiClient\Endpoint\Endpoint;
+use CodeCloud\ShopifyApiClient\Client;
+use CodeCloud\ShopifyApiClient\Endpoint\Endpoint;
 
 class EndpointProxy
 {
@@ -63,7 +63,7 @@ class EndpointProxy
     {
         $endpointConfig = __DIR__ . '/../../config/endpoints/' . $endpointName . '.yaml';
 
-        $nsRoot = 'Codecloud\ShopifyApiClient\Endpoint\\';
+        $nsRoot = 'CodeCloud\ShopifyApiClient\Endpoint\\';
 
         $endpointClass = $nsRoot . $endpointName;
         $endpointDefinition = EndpointDefinition::fromYaml($endpointConfig);

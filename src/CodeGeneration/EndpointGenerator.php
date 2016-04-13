@@ -1,5 +1,5 @@
 <?php
-namespace Codecloud\ShopifyApiClient\CodeGeneration;
+namespace CodeCloud\ShopifyApiClient\CodeGeneration;
 
 use Memio\Memio\Config\Build;
 use Memio\Model\Argument;

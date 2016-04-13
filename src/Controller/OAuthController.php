@@ -1,10 +1,10 @@
 <?php
-namespace Codecloud\ShopifyApiClient\Controller;
+namespace CodeCloud\ShopifyApiClient\Controller;
 
-use Codecloud\ShopifyApiClient\Auth\HmacSignature;
-use Codecloud\ShopifyApiClient\Auth\Nonce;
-use Codecloud\ShopifyApiClient\Auth\RequestAuthenticator;
-use Codecloud\ShopifyApiClient\Event\ShopifyStoreWasConfirmed;
+use CodeCloud\ShopifyApiClient\Auth\HmacSignature;
+use CodeCloud\ShopifyApiClient\Auth\Nonce;
+use CodeCloud\ShopifyApiClient\Auth\RequestAuthenticator;
+use CodeCloud\ShopifyApiClient\Event\ShopifyStoreWasConfirmed;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;

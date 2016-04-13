@@ -1,5 +1,5 @@
 <?php
-namespace Codecloud\ShopifyApiClient\EndpointFramework;
+namespace CodeCloud\ShopifyApiClient\EndpointFramework;
 
 class ValidationException extends \Exception
 {

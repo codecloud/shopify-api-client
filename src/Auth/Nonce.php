@@ -1,5 +1,5 @@
 <?php
-namespace Codecloud\ShopifyApiClient\Auth;
+namespace CodeCloud\ShopifyApiClient\Auth;
 
 class Nonce
 {

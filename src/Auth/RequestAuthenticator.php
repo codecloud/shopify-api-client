@@ -1,5 +1,5 @@
 <?php
-namespace Codecloud\ShopifyApiClient\Auth;
+namespace CodeCloud\ShopifyApiClient\Auth;
 
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\File\Exception\AccessDeniedException;

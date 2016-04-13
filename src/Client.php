@@ -1,7 +1,7 @@
 <?php
-namespace Codecloud\ShopifyApiClient;
+namespace CodeCloud\ShopifyApiClient;
 
-use Codecloud\ShopifyApiClient\EndpointFramework\EndpointProxy;
+use CodeCloud\ShopifyApiClient\EndpointFramework\EndpointProxy;
 
 class Client
 {
