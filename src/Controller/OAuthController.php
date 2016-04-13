@@ -21,9 +21,9 @@ class OAuthController extends Controller
             throw new InvalidParameterException('Shop is a required parameter');
         }
 
-        $clientId = \Config::get('shopify.api_key');
-        $scopes   = \Config::get('shopify.scopes');
-        $redirectUri = \Config::get('shopify.redirect_uri');
+        $clientId = \Config::get('shopify-api-client.keys.api_key');
+        $scopes   = implode(',', \Config::get('shopify-api-client.scopes'));
+        $redirectUri = \Config::get('shopify-api-client.urls.confirm_installation');
         $state = (new Nonce())->generateAndPersist();
 
         $url = "https://$shop.myshopify.com/admin/oauth/authorize?client_id=$clientId&scope=$scopes&redirect_uri=$redirectUri&state=$state";
@@ -56,8 +56,8 @@ class OAuthController extends Controller
 
         $response = (new Client())->post($url, [
             'body' => [
-                'client_id' => \Config::get('shopify.keys.api_key'),
-                'client_secret' => \Config::get('shopify.keys.secret_key'),
+                'client_id' => \Config::get('shopify-api-client.keys.api_key'),
+                'client_secret' => \Config::get('shopify-api-client.keys.secret_key'),
                 'code' => $code
             ]
         ]);
@@ -68,7 +68,7 @@ class OAuthController extends Controller
         Event::fire(new ShopifyStoreWasConfirmed($decoded));
 
         Response::create('', 302, [
-            'Location' => \Config::get('shopify.post_install_redirect_uri')
+            'Location' => \Config::get('shopify-api-client.urls.post_install_redirect_uri')
         ])->send();
     }
 }
