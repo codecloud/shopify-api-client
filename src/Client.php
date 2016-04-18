@@ -1,6 +1,7 @@
 <?php
 namespace CodeCloud\ShopifyApiClient;
 
+use CodeCloud\ShopifyApiClient\EndpointFramework\ApiResponse;
 use CodeCloud\ShopifyApiClient\EndpointFramework\EndpointProxy;
 
 class Client
@@ -42,7 +43,7 @@ class Client
     /**
      * @param string $url
      * @param array $params
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @return ApiResponse
      */
     public function get($url, array $params = [])
     {
@@ -52,7 +53,7 @@ class Client
     /**
      * @param string $url
      * @param array $params
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @return ApiResponse
      */
     public function put($url, array $params = [])
     {
@@ -62,7 +63,7 @@ class Client
     /**
      * @param string $url
      * @param array $params
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @return ApiResponse
      */
     public function post($url, array $params = [])
     {
@@ -72,7 +73,7 @@ class Client
     /**
      * @param string $url
      * @param array $params
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @return ApiResponse
      */
     public function delete($url, array $params = [])
     {
@@ -82,7 +83,7 @@ class Client
     /**
      * @param string $url
      * @param array $params
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @return ApiResponse
      */
     public function patch($url, array $params = [])
     {
@@ -93,11 +94,15 @@ class Client
      * @param string  $httpVerb
      * @param string $url
      * @param array $params
-     * @return \GuzzleHttp\Promise\PromiseInterface
+     * @return ApiResponse
      */
     protected function httpRequest($httpVerb, $url, array $params = [])
     {
-        return $this->httpClient->request($httpVerb, $url, $this->mergeOptions(['body' => $params]));
+        $rawResponse = $this->httpClient->request($httpVerb, $url, $this->mergeOptions(['body' => $params]));
+
+        $data = $rawResponse->getBody()->getContents() ? : json_encode(null);
+
+        return ApiResponse::fromJson($data, $rawResponse->getStatusCode());
     }
 
     /**

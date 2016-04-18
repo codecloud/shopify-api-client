@@ -173,7 +173,11 @@ class EndpointGenerator
             }
 
             if (! empty($methodConfig['returns'])) {
-                $methodBody .= $this->normaliseMethodBody('return $response->get(\'' . $methodConfig['returns'] . '\');');
+                if ($methodConfig['returns'] == '@http_status_success') {
+                    $methodBody .= $this->normaliseMethodBody('return $response->success();');
+                } else {
+                    $methodBody .= $this->normaliseMethodBody('return $response->get(\'' . $methodConfig['returns'] . '\');');
+                }
             } else {
                 $methodBody .= $this->normaliseMethodBody('return $response;');
             }

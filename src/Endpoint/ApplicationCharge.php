@@ -8,7 +8,7 @@ class ApplicationCharge extends Endpoint
     {
         $params = array_merge($params, compact($name, $price));
         $response = $this->api->post($this->getMethod('create')->getUrl(), $params);
-        return $response->get('application_charge');
+        return $response->success();
     }
 
     public function get($applicationChargeId, array $params)

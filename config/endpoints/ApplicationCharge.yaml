@@ -10,7 +10,7 @@ create:
         required: true
     return_url: string
     test: bool
-  returns: application_charge
+  returns: @http_status_success
 
 get:
   type: get
@@ -28,6 +28,7 @@ search:
   allow:
     since_id: int
     fields: string
+  returns: application_charges
 
 activate:
   type: post

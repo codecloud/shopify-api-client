@@ -9,11 +9,18 @@ class ApiResponse
     private $raw;
 
     /**
-     * @param \stdClass $rawResponse
+     * @var int
      */
-    public function __construct(\stdClass $rawResponse)
+    private $httpStatus;
+
+    /**
+     * @param \stdClass $rawResponse
+     * @param int $httpStatus
+     */
+    public function __construct(\stdClass $rawResponse, $httpStatus)
     {
         $this->raw = $rawResponse;
+        $this->httpStatus = $httpStatus;
     }
 
     /**
@@ -31,16 +38,25 @@ class ApiResponse
     }
 
     /**
+     * @return bool
+     */
+    public function success()
+    {
+        return $this->httpStatus >= 200 && $this->httpStatus < 300;
+    }
+
+    /**
      * @param string $jsonString
+     * @param integer $httpStatus
      * @return ApiResponse
      * @throws \Exception
      */
-    public static function fromJson($jsonString)
+    public static function fromJson($jsonString, $httpStatus)
     {
         if (! $decoded = json_decode($jsonString)) {
             throw new \Exception('Could not JSON decode string: ' . $jsonString);
         }
 
-        return new self($decoded);
+        return new self($decoded, $httpStatus);
     }
 }
