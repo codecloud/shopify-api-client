@@ -1,10 +1,5 @@
 <?php
 return [
-    'urls' => [
-        'install'                   => env('APP_URL') . '/shopify-install/begin',
-        'confirm_installation'      => env('APP_URL') . '/shopify-install/confirm',
-        'post_install_redirect_uri' => env('APP_URL') . '/shopify-install/complete'
-    ],
     'keys' => [
         'api_key'    => '',
         'secret_key' => ''
