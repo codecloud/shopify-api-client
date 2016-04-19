@@ -9,9 +9,14 @@ class ShopifyStoreWasConfirmed extends Event
     private $shopifyConfirmation;
 
     /**
+     * @var string
+     */
+    private $shopUrl;
+
+    /**
      * @param \stdClass $shopifyConfirmation
      */
-    public function __construct(\stdClass $shopifyConfirmation)
+    public function __construct(\stdClass $shopifyConfirmation, $shopUrl)
     {
         $this->shopifyConfirmation = $shopifyConfirmation;
     }
@@ -22,5 +27,13 @@ class ShopifyStoreWasConfirmed extends Event
     public function getAccessToken()
     {
         return $this->shopifyConfirmation->access_token;
+    }
+
+    /**
+     * @return string
+     */
+    public function getShopUrl()
+    {
+        return $this->shopUrl;
     }
 }
