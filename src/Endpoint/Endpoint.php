@@ -52,7 +52,7 @@ abstract class Endpoint
         if (! $this->endpointMethods) {
             /** @var \SplFileInfo $file */
             $parsed = Yaml::parse(file_get_contents($this->getConfigFile()), true, true);
-            $this->endpointMethods[] = $parsed;
+            $this->endpointMethods = $parsed;
         }
 
         return $this->endpointMethods;
