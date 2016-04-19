@@ -10,7 +10,7 @@ create:
         required: true
     return_url: string
     test: bool
-  returns: @http_status_success
+  returns: "@http_status_success"
 
 get:
   type: get
