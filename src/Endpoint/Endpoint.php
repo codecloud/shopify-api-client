@@ -51,30 +51,20 @@ abstract class Endpoint
     {
         if (! $this->endpointMethods) {
             /** @var \SplFileInfo $file */
-            foreach ($this->getConfigFiles() as $file) {
-                $configName = $file->getBasename('.yaml');
-                $parsed     = Yaml::parse(file_get_contents($file->getRealPath()), true, true);
-
-                $this->endpointMethods[$configName] = $parsed;
-            }
+            $parsed = Yaml::parse(file_get_contents($this->getConfigFile()), true, true);
+            $this->endpointMethods[] = $parsed;
         }
 
         return $this->endpointMethods;
     }
 
     /**
-     * @return \Generator
+     * @return array
      */
-    private function getConfigFiles()
+    private function getConfigFile()
     {
-        $dir = new \DirectoryIterator(__DIR__ . '/../../config/endpoints');
-
-        foreach ($dir as $entry) {
-            if ($entry->getExtension() != 'yaml') {
-                continue;
-            }
-
-            yield $entry;
-        }
+        $shortName = (new \ReflectionClass($this))->getShortName();
+        $file = realpath(__DIR__ . '/../../config/endpoints/' . $shortName . '.yaml');
+        return $file;
     }
 }
