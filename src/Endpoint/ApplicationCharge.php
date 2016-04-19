@@ -1,6 +1,6 @@
 <?php
 
-namespace Codecloud\ShopifyApiClient\Endpoint;
+namespace CodeCloud\ShopifyApiClient\Endpoint;
 
 class ApplicationCharge extends Endpoint
 {
@@ -21,7 +21,7 @@ class ApplicationCharge extends Endpoint
     public function search(array $params)
     {
         $response = $this->api->get($this->getMethod('search')->getUrl(), $params);
-        return $response;
+        return $response->get('application_charges');
     }
 
     public function activate($applicationChargeId)

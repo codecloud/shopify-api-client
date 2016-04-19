@@ -105,7 +105,7 @@ class EndpointGenerator
     private function generatePhpCodeFromConfig(array $config)
     {
         $className = $config['name'];
-        $namespace = 'Codecloud\\ShopifyApiClient\\Endpoint';
+        $namespace = 'CodeCloud\\ShopifyApiClient\\Endpoint';
 
         $file = File::make('blah');
 

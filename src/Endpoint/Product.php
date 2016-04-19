@@ -1,6 +1,6 @@
 <?php
 
-namespace Codecloud\ShopifyApiClient\Endpoint;
+namespace CodeCloud\ShopifyApiClient\Endpoint;
 
 class Product extends Endpoint
 {
