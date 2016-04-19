@@ -12,6 +12,11 @@ class Client
     private $httpClient;
 
     /**
+     * @var string
+     */
+    private $shopUrl;
+
+    /**
      * @var array
      */
     private $requestDefaults = [
@@ -38,6 +43,14 @@ class Client
                 'X-Shopify-Auth-Token' => $authToken
             ]
         ]);
+    }
+
+    /**
+     * @param string $shopUrl
+     */
+    public function setShopUrl($shopUrl)
+    {
+        $this->shopUrl = $shopUrl;
     }
 
     /**
@@ -98,11 +111,20 @@ class Client
      */
     protected function httpRequest($httpVerb, $url, array $params = [])
     {
-        $rawResponse = $this->httpClient->request($httpVerb, $url, $this->mergeOptions(['body' => $params]));
+        $rawResponse = $this->httpClient->request($httpVerb, $this->fullUrl($url), $this->mergeOptions(['body' => $params]));
 
         $data = $rawResponse->getBody()->getContents() ? : json_encode(null);
 
         return ApiResponse::fromJson($data, $rawResponse->getStatusCode());
+    }
+
+    /**
+     * @param string $url
+     * @return string
+     */
+    protected function fullUrl($url)
+    {
+        return ($this->shopUrl ? $this->shopUrl . '/' . $url : $url);
     }
 
     /**
