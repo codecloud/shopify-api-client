@@ -80,7 +80,9 @@ class Client
      */
     public function post($url, array $params = [])
     {
-        return $this->httpRequest('post', $url, $params);
+        return $this->httpRequest('post', $url, [
+            'form_params' => $params
+        ]);
     }
 
     /**
@@ -111,7 +113,7 @@ class Client
      */
     protected function httpRequest($httpVerb, $url, array $params = [])
     {
-        $rawResponse = $this->httpClient->request($httpVerb, $this->fullUrl($url), $this->mergeOptions(['body' => $params]));
+        $rawResponse = $this->httpClient->request($httpVerb, $this->fullUrl($url), $this->mergeOptions($params));
 
         $data = $rawResponse->getBody()->getContents() ? : json_encode(null);
 
