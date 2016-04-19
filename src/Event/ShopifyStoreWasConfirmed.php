@@ -15,10 +15,12 @@ class ShopifyStoreWasConfirmed extends Event
 
     /**
      * @param \stdClass $shopifyConfirmation
+     * @param string $shopUrl
      */
     public function __construct(\stdClass $shopifyConfirmation, $shopUrl)
     {
         $this->shopifyConfirmation = $shopifyConfirmation;
+        $this->shopUrl = $shopUrl;
     }
 
     /**
