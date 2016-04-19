@@ -3,6 +3,7 @@ namespace Codecloud\ShopifyApiClient\Endpoint;
 
 use Codecloud\ShopifyApiClient\Client;
 use Codecloud\ShopifyApiClient\EndpointFramework\Method;
+use Symfony\Component\Yaml\Yaml;
 
 abstract class Endpoint
 {
@@ -52,7 +53,7 @@ abstract class Endpoint
             /** @var \SplFileInfo $file */
             foreach ($this->getConfigFiles() as $file) {
                 $configName = $file->getBasename('.yaml');
-                $parsed     = $this->yamlParser->parse(file_get_contents($file->getRealPath()), true, true);
+                $parsed     = Yaml::parse(file_get_contents($file->getRealPath()), true, true);
 
                 $this->endpointMethods[$configName] = $parsed;
             }
