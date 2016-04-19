@@ -1,7 +1,5 @@
 <?php
-namespace CodeCloud\ShopifyApiClient\Event;
-
-class ShopifyStoreWasConfirmed extends Event
+class ShopifyStoreWasConfirmed
 {
     /**
      * @var \stdClass
