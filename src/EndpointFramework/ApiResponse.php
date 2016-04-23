@@ -30,7 +30,7 @@ class ApiResponse
      */
     public function get($property, $default = null)
     {
-        if (! property_exists($property, $this->raw)) {
+        if (! property_exists($this->raw, $property)) {
             return $default;
         }
 

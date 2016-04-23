@@ -40,7 +40,7 @@ class Client
     {
         $this->requestDefaults = array_merge_recursive($this->requestDefaults, [
             'headers' => [
-                'X-Shopify-Auth-Token' => $authToken
+                'X-Shopify-Access-Token' => $authToken
             ]
         ]);
     }
@@ -113,9 +113,14 @@ class Client
      */
     protected function httpRequest($httpVerb, $url, array $params = [])
     {
-        $rawResponse = $this->httpClient->request($httpVerb, $this->fullUrl($url), $this->mergeOptions($params));
-
-        $data = $rawResponse->getBody()->getContents() ? : json_encode(null);
+        try {
+            $rawResponse = $this->httpClient->request($httpVerb, $this->fullUrl($url), $this->mergeOptions($params));
+            $data = $rawResponse->getBody()->getContents() ? : json_encode(null);
+        } catch (ClientException $e) {
+            echo '<h1>Failed request to Shopify API</h1>';
+            echo '<p>Endpoint: ' . $this->fullUrl($url) . '</p>';
+            dd($this->mergeOptions($params));
+        }
 
         return ApiResponse::fromJson($data, $rawResponse->getStatusCode());
     }
