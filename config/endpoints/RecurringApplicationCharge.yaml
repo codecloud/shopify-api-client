@@ -1,0 +1,73 @@
+create:
+  type: post
+  url: admin/recurring_application_charges
+  returns: recurring_application_charge
+  allow:
+    name:
+      type: string
+      required: true
+    price:
+      type: currency
+      required: true
+    return_url: string
+    test: boolean
+    terms: string
+    trial_days: int
+
+get:
+  type: get
+  url: admin/recurring_application_charges/{recurringApplicationChargeId}
+  url_params:
+    recurringApplicationChargeId: int
+  returns: recurring_application_charge
+  allow:
+    fields: string
+
+search:
+  type: get
+  url: admin/recurring_application_charges
+  returns: recurring_application_charges
+  allow:
+    since_id: int
+    fields: string
+
+activate:
+  type: post
+  url: admin/recurring_application_charges/{recurringApplicationChargeId}/activate
+  returns: recurring_application_charge
+  url_params:
+    recurringApplicationChargeId: int
+  allow:
+    id: int
+    name: string
+    api_client_id: int
+    price: currency
+    status: string
+    return_url: string
+    billing_on: datetime
+    test: boolean
+    trial_days: int
+
+cancel:
+  type: delete
+  url: admin/recurring_application_charges/{recurringApplicationChargeId}
+  url_params:
+    recurringApplicationChargeId: int
+  returns: "@http_status_success"
+
+customise:
+  type: put
+  url: admin/recurring_application_charges/{recurringApplicationChargeId}/customize
+  returns: recurring_application_charge
+  url_params:
+    recurringApplicationChargeId: int
+  allow:
+    id: int
+    name: string
+    api_client_id: int
+    price: currency
+    status: string
+    return_url: string
+    billing_on: datetime
+    test: boolean
+    trial_days: int

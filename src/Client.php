@@ -240,6 +240,14 @@ class Client
     }
 
     /**
+     * @return Endpoint\RecurringApplicationCharge
+     */
+    public function recurringApplicationCharge()
+    {
+        return $this->createEndpointProxy('RecurringApplicationCharge');
+    }
+
+    /**
      * @return Endpoint\ScriptTag
      */
     public function scriptTag()
