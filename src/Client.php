@@ -131,7 +131,7 @@ class Client
      */
     protected function fullUrl($url)
     {
-        return ($this->shopUrl ? $this->shopUrl . '/' . $url : $url);
+        return 'https://' . ($this->shopUrl ? $this->shopUrl . '/' . $url : $url) . '.json';
     }
 
     /**
