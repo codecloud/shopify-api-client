@@ -291,9 +291,9 @@ class Client
      */
     private function encodeBody(array $params)
     {
-        return json_encode([
-            'body' => $params
-        ], JSON_PRETTY_PRINT);
+        return [
+            'body' => json_encode($params, JSON_PRETTY_PRINT)
+        ];
     }
 
     /**
