@@ -88,4 +88,9 @@ class MethodCallValidator
     {
         return in_array($value, $paramConfig['options']);
     }
+
+    private function isValidBoolean($value)
+    {
+        return is_bool($value);
+    }
 }
