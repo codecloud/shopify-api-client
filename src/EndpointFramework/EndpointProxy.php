@@ -59,7 +59,7 @@ class EndpointProxy
      * @param Client $apiClient
      * @return EndpointProxy
      */
-    public static function create($endpointName, Client $apiClient)
+    public static function createEndpoint($endpointName, Client $apiClient)
     {
         $endpointConfig = __DIR__ . '/../../config/endpoints/' . $endpointName . '.yaml';
 

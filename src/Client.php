@@ -302,7 +302,7 @@ class Client
      */
     private function createEndpointProxy($endpointName)
     {
-        return EndpointProxy::create($endpointName, $this);
+        return EndpointProxy::createEndpoint($endpointName, $this);
     }
 }
 
