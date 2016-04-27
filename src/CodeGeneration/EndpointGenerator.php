@@ -165,6 +165,10 @@ class EndpointGenerator
                 $methodBody .= $this->normaliseMethodBody('$params = array_merge($params, compact(' . implode(', ', $requiredParams) .  '));');
             }
 
+            if ($methodConfig['type'] != 'get' && ! empty($methodConfig['returns']) && substr($methodConfig['returns'], 0, 1) != '@') {
+                $methodBody .= $this->normaliseMethodBody('$params = [\'' . $methodConfig['returns'] . '\' => $params];');
+            }
+
             if ($urlParams) {
                 $methodBody .= $this->normaliseMethodBody('$url = $this->getMethod(\'' . $methodName . '\')->constructUrlWithParams(compact(' . implode(', ', $urlParams) . '));');
                 $methodBody .= $this->normaliseMethodBody('$response = $this->api->' . $methodConfig['type'] . '($url' . $kwArgsStmt . ');');

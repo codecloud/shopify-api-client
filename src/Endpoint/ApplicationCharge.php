@@ -26,6 +26,7 @@ class ApplicationCharge extends Endpoint
 
     public function activate($applicationChargeId)
     {
+        $params = ['application_charge' => $params];
         $url = $this->getMethod('activate')->constructUrlWithParams(compact($applicationChargeId));
         $response = $this->api->post($url);
         return $response->get('application_charge');

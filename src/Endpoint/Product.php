@@ -26,6 +26,7 @@ class Product extends Endpoint
     public function create($title, array $params)
     {
         $params = array_merge($params, compact($title));
+        $params = ['product' => $params];
         $response = $this->api->post($this->getMethod('create')->getUrl(), $params);
         return $response->get('product');
     }
@@ -33,6 +34,7 @@ class Product extends Endpoint
     public function update($productId, $title, array $params)
     {
         $params = array_merge($params, compact($title));
+        $params = ['product' => $params];
         $url = $this->getMethod('update')->constructUrlWithParams(compact($productId));
         $response = $this->api->put($url, $params);
         return $response->get('product');

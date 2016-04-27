@@ -6,12 +6,14 @@ class CarrierService extends Endpoint
 {
     public function create(array $params)
     {
+        $params = ['carrier_service' => $params];
         $response = $this->api->post($this->getMethod('create')->getUrl(), $params);
         return $response->get('carrier_service');
     }
 
     public function update($carrierServiceId, array $params)
     {
+        $params = ['carrier_service' => $params];
         $url = $this->getMethod('update')->constructUrlWithParams(compact($carrierServiceId));
         $response = $this->api->put($url, $params);
         return $response->get('carrier_service');

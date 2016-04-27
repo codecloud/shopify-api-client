@@ -26,6 +26,7 @@ class Theme extends Endpoint
 
     public function update($themeId, array $params)
     {
+        $params = ['theme' => $params];
         $url = $this->getMethod('update')->constructUrlWithParams(compact($themeId));
         $response = $this->api->put($url, $params);
         return $response->get('theme');

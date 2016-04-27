@@ -26,6 +26,7 @@ class SmartCollection extends Endpoint
     public function create($title, array $params)
     {
         $params = array_merge($params, compact($title));
+        $params = ['smart_collection' => $params];
         $response = $this->api->post($this->getMethod('create')->getUrl(), $params);
         return $response->get('smart_collection');
     }
@@ -33,6 +34,7 @@ class SmartCollection extends Endpoint
     public function update($smartCollectionId, $title, array $params)
     {
         $params = array_merge($params, compact($title));
+        $params = ['smart_collection' => $params];
         $url = $this->getMethod('update')->constructUrlWithParams(compact($smartCollectionId));
         $response = $this->api->put($url, $params);
         return $response->get('smart_collection');

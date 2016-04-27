@@ -70,7 +70,7 @@ class Client
      */
     public function put($url, array $params = [])
     {
-        return $this->httpRequest('put', $url, $params);
+        return $this->httpRequest('put', $url, $this->encodeBody($params));
     }
 
     /**
@@ -80,9 +80,7 @@ class Client
      */
     public function post($url, array $params = [])
     {
-        return $this->httpRequest('post', $url, [
-            'form_params' => $params
-        ]);
+        return $this->httpRequest('post', $url, $this->encodeBody($params));
     }
 
     /**
@@ -92,7 +90,7 @@ class Client
      */
     public function delete($url, array $params = [])
     {
-        return $this->httpRequest('delete', $url, $params);
+        return $this->httpRequest('delete', $url, $this->encodeBody($params));
     }
 
     /**
@@ -102,7 +100,7 @@ class Client
      */
     public function patch($url, array $params = [])
     {
-        return $this->httpRequest('patch', $url, $params);
+        return $this->httpRequest('patch', $url, $this->encodeBody($params));
     }
 
     /**
@@ -285,6 +283,17 @@ class Client
     public function webhook()
     {
         return $this->createEndpointProxy('Webhook');
+    }
+
+    /**
+     * @param array $params
+     * @return string
+     */
+    private function encodeBody(array $params)
+    {
+        return json_encode([
+            'body' => $params
+        ], JSON_PRETTY_PRINT);
     }
 
     /**

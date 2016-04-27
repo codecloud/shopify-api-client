@@ -26,12 +26,14 @@ class Webhook extends Endpoint
     public function create($topic, $address, array $params)
     {
         $params = array_merge($params, compact($topic, $address));
+        $params = ['webhook' => $params];
         $response = $this->api->post($this->getMethod('create')->getUrl(), $params);
         return $response->get('webhook');
     }
 
     public function update($webhookId, array $params)
     {
+        $params = ['webhook' => $params];
         $url = $this->getMethod('update')->constructUrlWithParams(compact($webhookId));
         $response = $this->api->put($url, $params);
         return $response->get('webhook');

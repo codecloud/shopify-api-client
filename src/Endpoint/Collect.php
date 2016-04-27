@@ -7,6 +7,7 @@ class Collect extends Endpoint
     public function create($product_id, $collection_id, array $params)
     {
         $params = array_merge($params, compact($product_id, $collection_id));
+        $params = ['collect' => $params];
         $response = $this->api->post($this->getMethod('create')->getUrl(), $params);
         return $response->get('collect');
     }

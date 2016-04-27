@@ -53,6 +53,7 @@ class Metafield extends Endpoint
     public function create($key, array $params)
     {
         $params = array_merge($params, compact($key));
+        $params = ['metafield' => $params];
         $response = $this->api->post($this->getMethod('create')->getUrl(), $params);
         return $response->get('metafield');
     }
@@ -60,12 +61,14 @@ class Metafield extends Endpoint
     public function update($key, array $params)
     {
         $params = array_merge($params, compact($key));
+        $params = ['metafield' => $params];
         $response = $this->api->put($this->getMethod('update')->getUrl(), $params);
         return $response->get('metafield');
     }
 
     public function updateProduct(array $params)
     {
+        $params = ['metafield' => $params];
         $response = $this->api->put($this->getMethod('updateProduct')->getUrl(), $params);
         return $response->get('metafield');
     }

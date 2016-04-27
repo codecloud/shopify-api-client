@@ -26,12 +26,14 @@ class Blog extends Endpoint
     public function create($title, array $params)
     {
         $params = array_merge($params, compact($title));
+        $params = ['blog' => $params];
         $response = $this->api->post($this->getMethod('create')->getUrl(), $params);
         return $response->get('blog');
     }
 
     public function update($blogId, array $params)
     {
+        $params = ['blog' => $params];
         $url = $this->getMethod('update')->constructUrlWithParams(compact($blogId));
         $response = $this->api->put($url, $params);
         return $response->get('blog');
