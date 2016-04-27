@@ -13,7 +13,7 @@ class CheckoutAPI extends Endpoint
 
     public function get($checkoutToken)
     {
-        $url = $this->getMethod('get')->constructUrlWithParams(compact($checkoutToken));
+        $url = $this->getMethod('get')->constructUrlWithParams(compact('checkoutToken'));
         $response = $this->api->get($url);
         return $response->get('checkout');
     }
@@ -39,7 +39,7 @@ class CheckoutAPI extends Endpoint
 
     public function payment(object $source)
     {
-        $params = array_merge($params, compact($source));
+        $params = array_merge($params, compact('source'));
         $params = ['checkout' => $params];
         $response = $this->api->post($this->getMethod('payment')->getUrl());
         return $response->get('checkout');

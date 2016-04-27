@@ -1,7 +1,7 @@
 <?php
 require 'vendor/autoload.php';
 
-$gen = new \Codecloud\ShopifyApiClient\CodeGeneration\EndpointGenerator(
+$gen = new \CodeCloud\ShopifyApiClient\CodeGeneration\EndpointGenerator(
     new \Symfony\Component\Yaml\Parser()
 );
 

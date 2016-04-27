@@ -14,7 +14,7 @@ class CarrierService extends Endpoint
     public function update($carrierServiceId, array $params)
     {
         $params = ['carrier_service' => $params];
-        $url = $this->getMethod('update')->constructUrlWithParams(compact($carrierServiceId));
+        $url = $this->getMethod('update')->constructUrlWithParams(compact('carrierServiceId'));
         $response = $this->api->put($url, $params);
         return $response->get('carrier_service');
     }
@@ -27,14 +27,14 @@ class CarrierService extends Endpoint
 
     public function get($carrierServiceId)
     {
-        $url = $this->getMethod('get')->constructUrlWithParams(compact($carrierServiceId));
+        $url = $this->getMethod('get')->constructUrlWithParams(compact('carrierServiceId'));
         $response = $this->api->get($url);
         return $response->get('carrier_service');
     }
 
     public function delete($carrierServiceId)
     {
-        $url = $this->getMethod('delete')->constructUrlWithParams(compact($carrierServiceId));
+        $url = $this->getMethod('delete')->constructUrlWithParams(compact('carrierServiceId'));
         $response = $this->api->delete($url);
         return $response;
     }

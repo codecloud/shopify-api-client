@@ -6,7 +6,7 @@ class RecurringApplicationCharge extends Endpoint
 {
     public function create($name, $price, array $params)
     {
-        $params = array_merge($params, compact($name, $price));
+        $params = array_merge($params, compact('name', 'price'));
         $params = ['recurring_application_charge' => $params];
         $response = $this->api->post($this->getMethod('create')->getUrl(), $params);
         return $response->get('recurring_application_charge');
@@ -14,7 +14,7 @@ class RecurringApplicationCharge extends Endpoint
 
     public function get($recurringApplicationChargeId, array $params)
     {
-        $url = $this->getMethod('get')->constructUrlWithParams(compact($recurringApplicationChargeId));
+        $url = $this->getMethod('get')->constructUrlWithParams(compact('recurringApplicationChargeId'));
         $response = $this->api->get($url, $params);
         return $response->get('recurring_application_charge');
     }
@@ -28,14 +28,14 @@ class RecurringApplicationCharge extends Endpoint
     public function activate($recurringApplicationChargeId, array $params)
     {
         $params = ['recurring_application_charge' => $params];
-        $url = $this->getMethod('activate')->constructUrlWithParams(compact($recurringApplicationChargeId));
+        $url = $this->getMethod('activate')->constructUrlWithParams(compact('recurringApplicationChargeId'));
         $response = $this->api->post($url, $params);
         return $response->get('recurring_application_charge');
     }
 
     public function cancel($recurringApplicationChargeId)
     {
-        $url = $this->getMethod('cancel')->constructUrlWithParams(compact($recurringApplicationChargeId));
+        $url = $this->getMethod('cancel')->constructUrlWithParams(compact('recurringApplicationChargeId'));
         $response = $this->api->delete($url);
         return $response->success();
     }
@@ -43,7 +43,7 @@ class RecurringApplicationCharge extends Endpoint
     public function customise($recurringApplicationChargeId, array $params)
     {
         $params = ['recurring_application_charge' => $params];
-        $url = $this->getMethod('customise')->constructUrlWithParams(compact($recurringApplicationChargeId));
+        $url = $this->getMethod('customise')->constructUrlWithParams(compact('recurringApplicationChargeId'));
         $response = $this->api->put($url, $params);
         return $response->get('recurring_application_charge');
     }

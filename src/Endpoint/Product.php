@@ -18,14 +18,14 @@ class Product extends Endpoint
 
     public function get($productId, array $params)
     {
-        $url = $this->getMethod('get')->constructUrlWithParams(compact($productId));
+        $url = $this->getMethod('get')->constructUrlWithParams(compact('productId'));
         $response = $this->api->get($url, $params);
         return $response->get('product');
     }
 
     public function create($title, array $params)
     {
-        $params = array_merge($params, compact($title));
+        $params = array_merge($params, compact('title'));
         $params = ['product' => $params];
         $response = $this->api->post($this->getMethod('create')->getUrl(), $params);
         return $response->get('product');
@@ -33,16 +33,16 @@ class Product extends Endpoint
 
     public function update($productId, $title, array $params)
     {
-        $params = array_merge($params, compact($title));
+        $params = array_merge($params, compact('title'));
         $params = ['product' => $params];
-        $url = $this->getMethod('update')->constructUrlWithParams(compact($productId));
+        $url = $this->getMethod('update')->constructUrlWithParams(compact('productId'));
         $response = $this->api->put($url, $params);
         return $response->get('product');
     }
 
     public function delete($productId)
     {
-        $url = $this->getMethod('delete')->constructUrlWithParams(compact($productId));
+        $url = $this->getMethod('delete')->constructUrlWithParams(compact('productId'));
         $response = $this->api->delete($url);
         return $response;
     }

@@ -18,14 +18,14 @@ class ScriptTag extends Endpoint
 
     public function get($scriptTagId, array $params)
     {
-        $url = $this->getMethod('get')->constructUrlWithParams(compact($scriptTagId));
+        $url = $this->getMethod('get')->constructUrlWithParams(compact('scriptTagId'));
         $response = $this->api->get($url, $params);
         return $response->get('script_tag');
     }
 
     public function create($event, $src, array $params)
     {
-        $params = array_merge($params, compact($event, $src));
+        $params = array_merge($params, compact('event', 'src'));
         $params = ['script_tag' => $params];
         $response = $this->api->post($this->getMethod('create')->getUrl(), $params);
         return $response->get('script_tag');
@@ -33,16 +33,16 @@ class ScriptTag extends Endpoint
 
     public function update($scriptTagId, $event, $src, array $params)
     {
-        $params = array_merge($params, compact($event, $src));
+        $params = array_merge($params, compact('event', 'src'));
         $params = ['script_tag' => $params];
-        $url = $this->getMethod('update')->constructUrlWithParams(compact($scriptTagId));
+        $url = $this->getMethod('update')->constructUrlWithParams(compact('scriptTagId'));
         $response = $this->api->put($url, $params);
         return $response->get('script_tag');
     }
 
     public function delete($scriptTagId)
     {
-        $url = $this->getMethod('delete')->constructUrlWithParams(compact($scriptTagId));
+        $url = $this->getMethod('delete')->constructUrlWithParams(compact('scriptTagId'));
         $response = $this->api->delete($url);
         return $response;
     }

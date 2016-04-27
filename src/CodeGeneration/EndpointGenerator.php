@@ -123,7 +123,7 @@ class EndpointGenerator
                     $type = is_array($paramConfig) ? $paramConfig['type'] : $paramConfig;
                     $arg = new Argument($type, $paramName);
                     $method->addArgument($arg);
-                    $urlParams[] = '$' . $paramName;
+                    $urlParams[] = '\'' . $paramName . '\'';
                 }
             }
 
@@ -145,7 +145,7 @@ class EndpointGenerator
 
                         $argument = new Argument($type, $paramName);
                         $method->addArgument($argument);
-                        $requiredParams[] = '$' . $paramName;
+                        $requiredParams[] = '\'' . $paramName . '\'';
                     } else {
                         $kwArgs = true;
                     }

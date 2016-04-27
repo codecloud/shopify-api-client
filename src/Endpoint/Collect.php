@@ -6,7 +6,7 @@ class Collect extends Endpoint
 {
     public function create($product_id, $collection_id, array $params)
     {
-        $params = array_merge($params, compact($product_id, $collection_id));
+        $params = array_merge($params, compact('product_id', 'collection_id'));
         $params = ['collect' => $params];
         $response = $this->api->post($this->getMethod('create')->getUrl(), $params);
         return $response->get('collect');
@@ -32,7 +32,7 @@ class Collect extends Endpoint
 
     public function get($collectId, array $params)
     {
-        $url = $this->getMethod('get')->constructUrlWithParams(compact($collectId));
+        $url = $this->getMethod('get')->constructUrlWithParams(compact('collectId'));
         $response = $this->api->get($url, $params);
         return $response->get('collect');
     }

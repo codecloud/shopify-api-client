@@ -6,14 +6,14 @@ class Event extends Endpoint
 {
     public function product($productId, array $params)
     {
-        $url = $this->getMethod('product')->constructUrlWithParams(compact($productId));
+        $url = $this->getMethod('product')->constructUrlWithParams(compact('productId'));
         $response = $this->api->get($url, $params);
         return $response->get('events');
     }
 
     public function order($orderId, array $params)
     {
-        $url = $this->getMethod('order')->constructUrlWithParams(compact($orderId));
+        $url = $this->getMethod('order')->constructUrlWithParams(compact('orderId'));
         $response = $this->api->get($url, $params);
         return $response->get('events');
     }

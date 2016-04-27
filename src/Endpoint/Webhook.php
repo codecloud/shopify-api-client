@@ -18,14 +18,14 @@ class Webhook extends Endpoint
 
     public function get($webhookId, array $params)
     {
-        $url = $this->getMethod('get')->constructUrlWithParams(compact($webhookId));
+        $url = $this->getMethod('get')->constructUrlWithParams(compact('webhookId'));
         $response = $this->api->get($url, $params);
         return $response->get('webhook');
     }
 
     public function create($topic, $address, array $params)
     {
-        $params = array_merge($params, compact($topic, $address));
+        $params = array_merge($params, compact('topic', 'address'));
         $params = ['webhook' => $params];
         $response = $this->api->post($this->getMethod('create')->getUrl(), $params);
         return $response->get('webhook');
@@ -34,14 +34,14 @@ class Webhook extends Endpoint
     public function update($webhookId, array $params)
     {
         $params = ['webhook' => $params];
-        $url = $this->getMethod('update')->constructUrlWithParams(compact($webhookId));
+        $url = $this->getMethod('update')->constructUrlWithParams(compact('webhookId'));
         $response = $this->api->put($url, $params);
         return $response->get('webhook');
     }
 
     public function delete($webhookId)
     {
-        $url = $this->getMethod('delete')->constructUrlWithParams(compact($webhookId));
+        $url = $this->getMethod('delete')->constructUrlWithParams(compact('webhookId'));
         $response = $this->api->delete($url);
         return $response;
     }

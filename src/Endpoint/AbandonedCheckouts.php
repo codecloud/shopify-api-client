@@ -6,7 +6,7 @@ class AbandonedCheckouts extends Endpoint
 {
     public function count(enum $status, array $params)
     {
-        $params = array_merge($params, compact($status));
+        $params = array_merge($params, compact('status'));
         $response = $this->api->get($this->getMethod('count')->getUrl(), $params);
         return $response->get('count');
     }

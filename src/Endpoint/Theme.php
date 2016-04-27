@@ -12,14 +12,14 @@ class Theme extends Endpoint
 
     public function get($themeId, array $params)
     {
-        $url = $this->getMethod('get')->constructUrlWithParams(compact($themeId));
+        $url = $this->getMethod('get')->constructUrlWithParams(compact('themeId'));
         $response = $this->api->get($url, $params);
         return $response->get('theme');
     }
 
     public function create($name, array $params)
     {
-        $params = array_merge($params, compact($name));
+        $params = array_merge($params, compact('name'));
         $response = $this->api->post($this->getMethod('create')->getUrl(), $params);
         return $response;
     }
@@ -27,7 +27,7 @@ class Theme extends Endpoint
     public function update($themeId, array $params)
     {
         $params = ['theme' => $params];
-        $url = $this->getMethod('update')->constructUrlWithParams(compact($themeId));
+        $url = $this->getMethod('update')->constructUrlWithParams(compact('themeId'));
         $response = $this->api->put($url, $params);
         return $response->get('theme');
     }

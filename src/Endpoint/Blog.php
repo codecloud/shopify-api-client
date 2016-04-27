@@ -18,14 +18,14 @@ class Blog extends Endpoint
 
     public function get($blogId, array $params)
     {
-        $url = $this->getMethod('get')->constructUrlWithParams(compact($blogId));
+        $url = $this->getMethod('get')->constructUrlWithParams(compact('blogId'));
         $response = $this->api->get($url, $params);
         return $response->get('blog');
     }
 
     public function create($title, array $params)
     {
-        $params = array_merge($params, compact($title));
+        $params = array_merge($params, compact('title'));
         $params = ['blog' => $params];
         $response = $this->api->post($this->getMethod('create')->getUrl(), $params);
         return $response->get('blog');
@@ -34,14 +34,14 @@ class Blog extends Endpoint
     public function update($blogId, array $params)
     {
         $params = ['blog' => $params];
-        $url = $this->getMethod('update')->constructUrlWithParams(compact($blogId));
+        $url = $this->getMethod('update')->constructUrlWithParams(compact('blogId'));
         $response = $this->api->put($url, $params);
         return $response->get('blog');
     }
 
     public function delete($blogId)
     {
-        $url = $this->getMethod('delete')->constructUrlWithParams(compact($blogId));
+        $url = $this->getMethod('delete')->constructUrlWithParams(compact('blogId'));
         $response = $this->api->delete($url);
         return $response;
     }

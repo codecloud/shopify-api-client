@@ -18,14 +18,14 @@ class SmartCollection extends Endpoint
 
     public function get($smartCollectionId, array $params)
     {
-        $url = $this->getMethod('get')->constructUrlWithParams(compact($smartCollectionId));
+        $url = $this->getMethod('get')->constructUrlWithParams(compact('smartCollectionId'));
         $response = $this->api->get($url, $params);
         return $response->get('smart_collection');
     }
 
     public function create($title, array $params)
     {
-        $params = array_merge($params, compact($title));
+        $params = array_merge($params, compact('title'));
         $params = ['smart_collection' => $params];
         $response = $this->api->post($this->getMethod('create')->getUrl(), $params);
         return $response->get('smart_collection');
@@ -33,23 +33,23 @@ class SmartCollection extends Endpoint
 
     public function update($smartCollectionId, $title, array $params)
     {
-        $params = array_merge($params, compact($title));
+        $params = array_merge($params, compact('title'));
         $params = ['smart_collection' => $params];
-        $url = $this->getMethod('update')->constructUrlWithParams(compact($smartCollectionId));
+        $url = $this->getMethod('update')->constructUrlWithParams(compact('smartCollectionId'));
         $response = $this->api->put($url, $params);
         return $response->get('smart_collection');
     }
 
     public function order($smartCollectionId, array $params)
     {
-        $url = $this->getMethod('order')->constructUrlWithParams(compact($smartCollectionId));
+        $url = $this->getMethod('order')->constructUrlWithParams(compact('smartCollectionId'));
         $response = $this->api->put($url, $params);
         return $response;
     }
 
     public function delete($smartCollectionId)
     {
-        $url = $this->getMethod('delete')->constructUrlWithParams(compact($smartCollectionId));
+        $url = $this->getMethod('delete')->constructUrlWithParams(compact('smartCollectionId'));
         $response = $this->api->delete($url);
         return $response;
     }
